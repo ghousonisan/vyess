@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import styles from './styles/documentUpload.module.css';
 import { Card, CardContent, CardHeader, CardFooter } from '../components/ui/Card';
 import { Button } from '../components/ui/Button';
 import { StepIndicator } from '../components/StepIndicator';
@@ -56,7 +57,6 @@ export function DocumentUpload() {
     }
   };
 
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsUploading(true);
@@ -77,7 +77,7 @@ export function DocumentUpload() {
       }
 
       const data = await response.json();
-      
+
       // Save document URLs to vendor data
       const vendorData = JSON.parse(localStorage.getItem('vendorData') || '{}');
       vendorData.documentUrls = data.urls;
@@ -112,56 +112,55 @@ export function DocumentUpload() {
     }
   };
 
-
   const renderUploadBox = (title, type, description) => {
     const selectedFile = files[type];
     const selectedPreviewUrl = previewUrls[type];
     const isPdf = selectedFile?.type === 'application/pdf';
 
     return (
-      <div className="border-2 border-dashed border-slate-300 rounded-lg p-6 text-center hover:bg-slate-50 transition-colors">
+      <div className={styles.uploadBox}>
         <input
           type="file"
           id={`upload-${type}`}
-          className="hidden"
+          className={styles.hiddenInput}
           onChange={(e) => handleFileChange(e, type)}
           accept=".pdf,.jpg,.jpeg,.png"
         />
-        <label htmlFor={`upload-${type}`} className="cursor-pointer flex flex-col items-center">
+        <label htmlFor={`upload-${type}`} className={styles.uploadLabel}>
           {selectedFile ? (
-            <div className="w-full space-y-4">
-              <div className="mx-auto flex h-48 w-full max-w-sm items-center justify-center overflow-hidden rounded-md border border-slate-200 bg-white">
+            <div className={styles.selectedFileContainer}>
+              <div className={styles.previewBox}>
                 {isPdf ? (
                   <iframe
                     src={selectedPreviewUrl}
                     title={`${title} preview`}
-                    className="h-full w-full"
+                    className={styles.previewMedia}
                   />
                 ) : selectedPreviewUrl ? (
                   <img
                     src={selectedPreviewUrl}
                     alt={`${title} preview`}
-                    className="h-full w-full object-contain"
+                    className={styles.previewMediaImg}
                   />
                 ) : (
-                  <div className="text-center px-4">
-                    <FileText className="h-10 w-10 text-slate-400 mx-auto mb-2" />
-                    <p className="text-sm font-medium text-slate-700">{selectedFile.name}</p>
-                    <p className="text-xs text-slate-500 mt-1">Preview not available</p>
+                  <div className={styles.fallbackView}>
+                    <FileText className={styles.fallbackIcon} />
+                    <p className={styles.fallbackFileName}>{selectedFile.name}</p>
+                    <p className={styles.fallbackSubtext}>Preview not available</p>
                   </div>
                 )}
               </div>
-              <div>
-                <CheckCircle2 className="h-10 w-10 text-green-500 mb-3 mx-auto" />
-                <span className="font-medium text-slate-900 block">{selectedFile.name}</span>
-                <span className="text-sm text-slate-500 mt-1 block">Click to change</span>
+              <div className={styles.successInfo}>
+                <CheckCircle2 className={styles.successIcon} />
+                <span className={styles.successFileName}>{selectedFile.name}</span>
+                <span className={styles.successSubtext}>Click to change</span>
               </div>
             </div>
           ) : (
             <>
-              <Upload className="h-10 w-10 text-blue-500 mb-3" />
-              <span className="font-medium text-slate-900">Upload {title}</span>
-              <span className="text-sm text-slate-500 mt-1">{description} (PDF, JPG, PNG)</span>
+              <Upload className={styles.uploadIcon} />
+              <span className={styles.uploadTitle}>Upload {title}</span>
+              <span className={styles.uploadDesc}>{description} (PDF, JPG, PNG)</span>
             </>
           )}
         </label>
@@ -170,44 +169,51 @@ export function DocumentUpload() {
   };
 
   return (
-    <div className="max-w-3xl mx-auto">
-      <div className="mb-8">
-        <h1 className="text-3xl font-bold text-slate-900">Upload Documents</h1>
-        <p className="mt-2 text-slate-600">Please provide the required KYC documents for verification.</p>
+    <div className={styles.wholeWrapper}>
+    <div className={styles.container}>
+      <div className={styles.headerSection}>
+        <h1 className={styles.pageTitle}>Upload Documents</h1>
+        <p className={styles.pageSubtitle}>Please provide the required KYC documents for verification.</p>
       </div>
 
-      <div className="mb-10">
+      <div className={styles.stepContainer}>
         <StepIndicator steps={steps} currentStep={1} />
       </div>
 
       <form onSubmit={handleSubmit}>
         <Card>
-          <CardHeader 
+          <CardHeader
             title="KYC Documents"
             description="Ensure all documents are clear and legible."
           />
-          <CardContent className="space-y-6">
-            {renderUploadBox('Aadhaar Card', 'aadhaar', 'Front and back side')}
-            {renderUploadBox('PAN Card', 'pan', 'Clear image of PAN card')}
-            {renderUploadBox('GST Certificate', 'gst', 'Optional if not applicable')}
+          <CardContent>
+            <div className={styles.uploadList}>
+              {renderUploadBox('Aadhaar Card', 'aadhaar', 'Front and back side')}
+              {renderUploadBox('PAN Card', 'pan', 'Clear image of PAN card')}
+              {renderUploadBox('GST Certificate', 'gst', 'Optional if not applicable')}
+            </div>
           </CardContent>
-          <CardFooter className="justify-between">
+          <CardFooter className={styles.footerActions}>
             <Button variant="outline" type="button" onClick={() => navigate('/register')}>
               Back
             </Button>
-            <Button 
-              type="submit" 
+            <Button
+              type="submit"
               size="lg"
-              disabled={!files.aadhaar || !files.pan}
+              disabled={!files.aadhaar || !files.pan || isUploading}
             >
-              Save & Continue
+              {isUploading ? (
+                <>
+                  <Loader2 className={styles.spinner} /> Saving...
+                </>
+              ) : (
+                'Save & Continue'
+              )}
             </Button>
           </CardFooter>
         </Card>
       </form>
     </div>
+    </div>
   );
 }
-
-
-

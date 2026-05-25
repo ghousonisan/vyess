@@ -15,6 +15,7 @@
 }
 /* Container & Layout */
 .container {
+  width: 70%;
   font-family: "Inter", sans-serif;
   margin: 3rem 0;
   padding: 1rem;

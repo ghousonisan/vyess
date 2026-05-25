@@ -1,0 +1,116 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Jost:ital,wght@0,100..900;1,100..900&family=Metrophobic&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100..900;1,100..900&family=Spline+Sans:wght@300..700&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.wholeWrapper {
+    width: 100vw;
+  background-color: #f9fafb;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+/* Container & Layout */
+.container {
+  width: 70%;
+  font-family: "Inter", sans-serif;
+  margin: 3rem 0;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+  background-color: #ffffff;
+}
+
+@media (min-width: 640px) {
+  .container {
+    padding: 1.5rem;
+  }
+}
+
+/* Card overrides */
+.cardWrapper {
+  text-align: center;
+}
+
+.content {
+  padding-top: 3rem; /* pt-12 */
+  padding-bottom: 3rem; /* pb-12 */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Success Icon */
+.iconContainer {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1.5rem; /* mb-6 */
+}
+
+.iconBg {
+  width: 5rem; /* w-20 */
+  height: 5rem; /* h-20 */
+  background-color: #dcfce7; /* bg-green-100 */
+  border-radius: 9999px; /* rounded-full */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon {
+  width: 2.5rem; /* w-10 */
+  height: 2.5rem; /* h-10 */
+  color: #16a34a; /* text-green-600 */
+}
+
+/* Typography */
+.title {
+  font-size: 1.875rem; /* text-3xl */
+  font-weight: 700;
+  color: #0f172a; /* text-slate-900 */
+  margin: 0 0 1rem 0; /* mb-4 */
+}
+
+.description {
+  color: #475569; /* text-slate-600 */
+  font-size: 1.125rem; /* text-lg */
+  margin: 0 auto 2rem auto; /* mx-auto mb-8 */
+  max-width: 28rem; /* max-w-md */
+  line-height: 1.5;
+}
+
+/* Information Box */
+.infoBox {
+  background-color: #f8fafc; /* bg-slate-50 */
+  padding: 1.5rem; /* p-6 */
+  border-radius: 0.5rem; /* rounded-lg */
+  margin-bottom: 2rem; /* mb-8 */
+  font-size: 0.875rem; /* text-sm */
+  color: #475569; /* text-slate-600 */
+  text-align: left;
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid #f1f5f9;
+}
+
+.infoTitle {
+  font-weight: 600; /* font-semibold */
+  color: #0f172a; /* text-slate-900 */
+  margin: 0 0 0.5rem 0; /* mb-2 */
+  font-size: 1rem;
+}
+
+.infoList {
+  list-style-type: disc;
+  padding-left: 1.25rem; /* pl-5 */
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem; /* space-y-2 */
+}
+
+.infoList li {
+  line-height: 1.4;
+}

@@ -343,6 +343,7 @@ export function VendorRegistration() {
                                                         </label>
                                                         <input
                                                             type="text"
+                                                            required
                                                             className={styles.baseInput}
                                                             placeholder="e.g. 5 Years"
                                                             value={service.experience}

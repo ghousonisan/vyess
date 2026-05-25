@@ -1,0 +1,219 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Jost:ital,wght@0,100..900;1,100..900&family=Metrophobic&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100..900;1,100..900&family=Spline+Sans:wght@300..700&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.wholeWrapper {
+    width: 100vw;
+  background-color: #f9fafb;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+/* Container & Layout */
+.container {
+  width: 70%;
+  font-family: "Inter", sans-serif;
+  margin: 3rem 0;
+  padding: 1rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+  background-color: #ffffff;
+}
+
+@media (min-width: 640px) {
+  .container {
+    padding: 1.5rem 1.5rem;
+  }
+}
+
+/* Header Text */
+.headerSection {
+  padding-bottom: 2rem; /* mb-8 */
+}
+
+.pageTitle {
+  font-size: 1.875rem; /* text-3xl */
+  font-weight: 700;
+  color: #0f172a; /* slate-900 */
+  margin: 0;
+  padding: 10px 0 0 0 ;
+}
+
+.pageSubtitle {
+  margin-top: 0.5rem; /* mt-2 */
+  color: #475569; /* slate-600 */
+}
+
+.stepContainer {
+  margin-bottom: 2.5rem; /* mb-10 */
+}
+
+/* Upload Box Logic */
+.uploadList {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem; /* space-y-6 */
+}
+
+.uploadBox {
+  border: 2px dashed #cbd5e1; /* border-slate-300 */
+  border-radius: 0.5rem;
+  padding: 1.5rem; /* p-6 */
+  text-align: center;
+  transition: background-color 0.2s;
+}
+
+.uploadBox:hover {
+  background-color: #f8fafc; /* hover:bg-slate-50 */
+}
+
+.hiddenInput {
+  display: none;
+}
+
+.uploadLabel {
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+/* Empty State Styles */
+.uploadIcon {
+  height: 2.5rem; /* h-10 */
+  width: 2.5rem; /* w-10 */
+  color: #3b82f6; /* blue-500 */
+  margin-bottom: 0.75rem; /* mb-3 */
+}
+
+.uploadTitle {
+  font-weight: 500;
+  color: #0f172a; /* slate-900 */
+  display: block;
+}
+
+.uploadDesc {
+  font-size: 0.875rem; /* text-sm */
+  color: #64748b; /* slate-500 */
+  margin-top: 0.25rem;
+  display: block;
+}
+
+/* Selected File & Preview Styles */
+.selectedFileContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem; /* space-y-4 */
+}
+
+.previewBox {
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 12rem; /* h-48 */
+  width: 100%;
+  max-width: 24rem; /* max-w-sm */
+  overflow: hidden;
+  border-radius: 0.375rem;
+  border: 1px solid #e2e8f0; /* border-slate-200 */
+  background-color: #ffffff;
+}
+
+.previewMedia {
+  height: 100%;
+  width: 100%;
+  border: none;
+}
+
+.previewMediaImg {
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+}
+
+/* Fallback (No Preview) */
+.fallbackView {
+  text-align: center;
+  padding: 0 1rem;
+}
+
+.fallbackIcon {
+  height: 2.5rem;
+  width: 2.5rem;
+  color: #94a3b8; /* slate-400 */
+  margin: 0 auto 0.5rem auto;
+}
+
+.fallbackFileName {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #334155; /* slate-700 */
+  margin: 0;
+  word-break: break-all;
+}
+
+.fallbackSubtext {
+  font-size: 0.75rem;
+  color: #64748b; /* slate-500 */
+  margin-top: 0.25rem;
+}
+
+/* Success Indicator Below Preview */
+.successInfo {
+  text-align: center;
+}
+
+.successIcon {
+  height: 2.5rem;
+  width: 2.5rem;
+  color: #22c55e; /* green-500 */
+  margin: 0 auto 0.75rem auto;
+}
+
+.successFileName {
+  font-weight: 500;
+  color: #0f172a;
+  display: block;
+  word-break: break-all;
+}
+
+.successSubtext {
+  font-size: 0.875rem;
+  color: #64748b;
+  margin-top: 0.25rem;
+  display: block;
+}
+
+/* Card Footer */
+.footerActions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid #f1f5f9;
+  padding-top: 1.5rem;
+  margin-top: 1rem;
+}
+
+.spinner {
+  animation: spin 1s linear infinite;
+  height: 1rem;
+  width: 1rem;
+  margin-right: 0.5rem;
+  display: inline-block;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

@@ -1,0 +1,198 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Jost:ital,wght@0,100..900;1,100..900&family=Metrophobic&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100..900;1,100..900&family=Spline+Sans:wght@300..700&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.wholeWrapper {
+    width: 100vw;
+  background-color: #f9fafb;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+/* Container & Layout */
+.container {
+  width: 70%;
+  font-family: "Inter", sans-serif;
+  margin: 3rem 0;
+  padding: 1rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+  background-color: #ffffff;
+}
+
+@media (min-width: 640px) {
+  .container {
+    padding: 1.5rem 1.5rem;
+  }
+}
+
+.loadingContainer {
+  text-align: center;
+  padding: 4rem 0;
+  color: #64748b;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+/* Header Text */
+.headerSection {
+  margin-bottom: 2rem; /* mb-8 */
+}
+
+.pageTitle {
+  font-size: 1.875rem; /* text-3xl */
+  font-weight: 700;
+  color: #0f172a; /* slate-900 */
+  margin: 0;
+  padding: 10px 0 0 0 ;
+}
+
+.pageSubtitle {
+  margin-top: 0.5rem; /* mt-2 */
+  color: #475569; /* slate-600 */
+}
+
+.stepContainer {
+  margin-bottom: 2.5rem; /* mb-10 */
+}
+
+/* Card Elements */
+.cardHeaderBg {
+  background-color: #f8fafc; /* bg-slate-50 */
+}
+
+.cardContent {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem; /* space-y-6 */
+}
+
+/* Preview Wrapper */
+.previewWrapper {
+  border-radius: 0.75rem; /* rounded-xl */
+  border: 1px solid #e2e8f0; /* border-slate-200 */
+  background-color: #f8fafc; /* bg-slate-50 */
+  padding: 1rem; /* p-4 */
+}
+
+.previewHeader {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem; /* gap-3 */
+}
+
+.pdfTitle {
+  font-size: 0.875rem; /* text-sm */
+  font-weight: 600; /* font-semibold */
+  color: #0f172a; /* slate-900 */
+  margin: 0 0 0.25rem 0;
+}
+
+.pdfInstruction {
+  font-size: 0.875rem; /* text-sm */
+  color: #475569; /* slate-600 */
+  margin: 0;
+}
+
+/* Badges */
+.statusBadge {
+  border-radius: 9999px; /* rounded-full */
+  padding: 0.25rem 0.75rem; /* px-3 py-1 */
+  font-size: 0.75rem; /* text-xs */
+  font-weight: 600; /* font-semibold */
+}
+
+.badgeViewed {
+  background-color: #d1fae5; /* bg-emerald-100 */
+  color: #047857; /* text-emerald-700 */
+}
+
+.badgePending {
+  background-color: #fef3c7; /* bg-amber-100 */
+  color: #b45309; /* text-amber-700 */
+}
+
+/* PDF Viewer Containers */
+.pdfOuterContainer {
+  margin-top: 1rem; /* mt-4 */
+  overflow: hidden;
+  border-radius: 0.5rem; /* rounded-lg */
+  border: 1px solid #e2e8f0; /* border-slate-200 */
+  background-color: #ffffff;
+}
+
+.scrollableArea {
+  max-height: 36rem; /* max-h-[36rem] */
+  overflow-y: auto;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centers the PDF pages horizontally */
+}
+
+.loadingText {
+  padding: 1.5rem; /* p-6 */
+  font-size: 0.875rem; /* text-sm */
+  color: #64748b; /* slate-500 */
+  text-align: center;
+}
+
+.errorText {
+  margin-top: 0.75rem; /* mt-3 */
+  font-size: 0.875rem; /* text-sm */
+  color: #e11d48; /* rose-600 */
+}
+
+/* Checkbox Section */
+.checkboxSection {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem; /* gap-3 */
+}
+
+.checkboxWrapper {
+  display: flex;
+  align-items: center;
+  height: 1.25rem; /* h-5 */
+}
+
+.checkbox {
+  width: 1rem; /* w-4 */
+  height: 1rem; /* h-4 */
+  border: 1px solid #cbd5e1; /* border-slate-300 */
+  border-radius: 0.25rem; /* rounded */
+  cursor: pointer;
+}
+
+.checkbox:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.checkboxLabel {
+  font-size: 0.875rem; /* text-sm */
+  color: #334155; /* slate-700 */
+  line-height: 1.4;
+  cursor: pointer;
+}
+
+.checkboxHint {
+  margin-top: 0.25rem; /* mt-1 */
+  font-size: 0.75rem; /* text-xs */
+  color: #64748b; /* slate-500 */
+}
+
+/* Footer Actions */
+.footerActions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid #f1f5f9;
+  padding-top: 1.5rem;
+  margin-top: 1rem;
+}

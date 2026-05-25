@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import SignatureCanvas from 'react-signature-canvas';
 import { PDFDocument, rgb } from 'pdf-lib';
+import styles from './styles/digitalSignature.module.css';
 import { Card, CardContent, CardHeader, CardFooter } from '../components/ui/Card';
 import { Button } from '../components/ui/Button';
 import { StepIndicator } from '../components/StepIndicator';
@@ -63,13 +64,7 @@ export function DigitalSignature() {
       const lastPage = pages[pages.length - 1];
       const { width, height } = lastPage.getSize();
 
-
       // Right-side table coordinates (A4: 612x792)
-      // Table top-left: x=330, y=height-260
-      // Signature line: x=350, y=height-295 (width ~180, height ~32)
-      // Name line: x=350, y=height-355
-      // Date line: x=350, y=height-475
-
       // Draw signature image (centered on signature line)
       const signatureBytes = Uint8Array.from(atob(sigDataUrl.split(',')[1]), (char) => char.charCodeAt(0));
       const signatureImage = await pdfDoc.embedPng(signatureBytes);
@@ -153,13 +148,14 @@ export function DigitalSignature() {
   };
 
   return (
-    <div className="max-w-4xl mx-auto">
-      <div className="mb-8">
-        <h1 className="text-3xl font-bold text-slate-900">Digital Signature</h1>
-        <p className="mt-2 text-slate-600">Review the agreement and place your signature below.</p>
+    <div className={styles.wholeWrapper}>
+    <div className={styles.container}>
+      <div className={styles.headerSection}>
+        <h1 className={styles.pageTitle}>Digital Signature</h1>
+        <p className={styles.pageSubtitle}>Review the agreement and place your signature below.</p>
       </div>
 
-      <div className="mb-10">
+      <div className={styles.stepContainer}>
         <StepIndicator steps={steps} currentStep={3} />
       </div>
 
@@ -168,23 +164,27 @@ export function DigitalSignature() {
           title="Sign Agreement"
           description="Review the PDF and complete the signature fields below"
         />
-        <CardContent className="space-y-6">
-          <div className="rounded-xl border border-slate-200 bg-slate-50 p-4">
-            <div className="flex flex-wrap items-center justify-between gap-3">
+        <CardContent className={styles.cardContent}>
+          
+          {/* File Info Box */}
+          <div className={styles.infoBox}>
+            <div className={styles.infoBoxFlex}>
               <div>
-                <p className="text-sm font-semibold text-slate-900">VYESSFMS_Vendor_Agreement.pdf</p>
-                <p className="text-sm text-slate-600">The signed copy will be generated from the official agreement PDF when you click Sign & Download PDF.</p>
+                <p className={styles.infoTitle}>VYESSFMS_Vendor_Agreement.pdf</p>
+                <p className={styles.infoDesc}>The signed copy will be generated from the official agreement PDF when you click Sign & Download PDF.</p>
               </div>
-              <span className="rounded-full bg-blue-100 px-3 py-1 text-xs font-semibold text-blue-700">
+              <span className={styles.infoBadge}>
                 Official PDF
               </span>
             </div>
           </div>
 
-          <div className="grid gap-4 md:grid-cols-2">
-            <div className="rounded-xl border border-slate-200 bg-slate-50 p-4">
-              <label htmlFor="businessName" className="text-sm font-semibold text-slate-900">
-                Vendor Full Name / Business Name - name
+          {/* Input & Canvas Grid */}
+          <div className={styles.inputGrid}>
+            
+            <div className={styles.inputBox}>
+              <label htmlFor="businessName" className={styles.inputLabel}>
+                Vendor Full Name / Business Name
               </label>
               <input
                 id="businessName"
@@ -192,41 +192,45 @@ export function DigitalSignature() {
                 value={businessName}
                 onChange={(event) => setBusinessName(event.target.value)}
                 placeholder="Enter your full business name"
-                className="mt-3 w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-700 outline-none focus:border-blue-500"
+                className={styles.textInput}
               />
-              <p className="mt-2 text-xs text-slate-500">
+              <p className={styles.inputHint}>
                 This name will be used in the signed agreement.
               </p>
             </div>
 
-            <div className="rounded-xl border border-slate-200 bg-slate-50 p-4">
-              <p className="text-sm font-semibold text-slate-900">Vendor / Service Provider - signature</p>
-              <div className="mt-3 rounded-xl border-2 border-slate-300 overflow-hidden bg-white">
+            <div className={styles.inputBox}>
+              <p className={styles.inputLabel}>Vendor / Service Provider Signature</p>
+              <div className={styles.canvasWrapper}>
                 <SignatureCanvas
                   ref={sigCanvas}
-                  canvasProps={{ className: 'w-full h-64 cursor-crosshair' }}
+                  canvasProps={{ className: styles.sigCanvas }}
                   backgroundColor="rgb(255, 255, 255)"
                 />
               </div>
-              <p className="mt-2 text-xs text-slate-500">
+              <p className={styles.inputHint}>
                 Draw your signature in the space above.
               </p>
             </div>
+
           </div>
 
-          <div className="flex justify-between items-center">
-            <Button variant="ghost" size="sm" onClick={clearSignature} className="text-slate-500">
-              <Eraser className="w-4 h-4 mr-2" />
+          {/* Bottom Controls inside Content */}
+          <div className={styles.bottomControls}>
+            <Button variant="ghost" size="sm" onClick={clearSignature} style={{ color: '#64748b' }}>
+              <Eraser className={styles.btnIconSmall} />
               Clear Signature
             </Button>
 
-            <div className="text-right text-xs text-slate-500 space-y-1">
+            <div className={styles.metaInfo}>
               <p>Signer: <strong>{vendorData.contactPerson || 'Pending'}</strong></p>
               <p>Time: {timestamp}</p>
             </div>
           </div>
+
         </CardContent>
-        <CardFooter className="justify-between bg-blue-50 border-blue-100">
+        
+        <CardFooter className={styles.cardFooter}>
           <Button variant="outline" onClick={() => navigate('/agreement')}>
             Back
           </Button>
@@ -234,17 +238,18 @@ export function DigitalSignature() {
             onClick={generatePDF}
             size="lg"
             disabled={isGenerating}
-            className="bg-blue-600 hover:bg-blue-700"
+            className={styles.primaryActionBtn}
           >
             {isGenerating ? 'Processing...' : (
               <>
-                <Download className="w-5 h-5 mr-2" />
+                <Download className={styles.btnIcon} />
                 Sign & Download PDF
               </>
             )}
           </Button>
         </CardFooter>
       </Card>
+    </div>
     </div>
   );
 }
