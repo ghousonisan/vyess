@@ -10,6 +10,7 @@ import AssignVendor from '../pages/AssignVendor';
 import BecomePartner from '../pages/BecomePartner';
 import VendorDetailsOutlet from '../pages/VendorDetailsOutlet';
 import ProtectedRoute from '../components/ProtectedRoute';
+import {MaintenancePage} from '../pages/MaintenancePage';
 
 const AdminRoutes = () => {
   return (
@@ -30,11 +31,11 @@ const AdminRoutes = () => {
         {/* <Route path="signup" element={<Signup />} /> */}
         {/* <Route path="subCategory" element={<Services />} /> */}
         {/* <Route path="subCategory/:subCategoryId" element={<Service />} /> */}
-        <Route path="*" element={<div>404 - Page Not Found on Vyess admin</div>} />
+        <Route path="*" element={<MaintenancePage />} />
       </Route>
 
 
-      <Route path="*" element={<div>404 - Page Not Found on Vyess Website</div>} />
+      <Route path="*" element={<MaintenancePage />} />
     </Routes>
   )
 }

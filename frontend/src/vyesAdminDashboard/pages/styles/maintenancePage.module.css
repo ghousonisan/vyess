@@ -1,0 +1,51 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Jost:ital,wght@0,100..900;1,100..900&family=Metrophobic&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100..900;1,100..900&family=Spline+Sans:wght@300..700&display=swap');
+
+/* Container & Layout */
+.pageContainer {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #ffffff;
+  font-family: 'Inter', sans-serif;
+}
+
+
+/* =========================================
+   Main Content Styling 
+   ========================================= */
+.mainContent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0 2rem 2rem;
+  text-align: center;
+}
+
+.illustrationWrapper {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto 2rem auto; /* Centers the graphic */
+}
+
+.illustration {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.title {
+  font-size: 1.875rem;
+  font-weight: 700;
+  color: #0f172a;
+  padding: 0 0 1rem 0;
+}
+
+.subtitle {
+  font-size: 1rem;
+  color: #475569;
+  line-height: 1.5;
+  margin: 0;
+}
